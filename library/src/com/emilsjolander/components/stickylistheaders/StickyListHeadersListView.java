@@ -27,7 +27,7 @@ public class StickyListHeadersListView extends ListView {
 
 	public interface OnHeaderClickListener {
 		public void onHeaderClick(StickyListHeadersListView l, View header,
-				int itemPosition, long headerId, boolean currentlySticky);
+				int itemPosition, long headerId, boolean currentlySticky, MotionEvent event);
 	}
 
 	private OnScrollListener mOnScrollListenerDelegate;
@@ -57,7 +57,7 @@ public class StickyListHeadersListView extends ListView {
 			if (mOnHeaderClickListener != null) {
 				mOnHeaderClickListener.onHeaderClick(
 						StickyListHeadersListView.this, header, itemPosition,
-						headerId, false);
+						headerId, false, null);
 			}
 		}
 	};
@@ -543,7 +543,7 @@ public class StickyListHeadersListView extends ListView {
 					invalidate(0, 0, getWidth(), mHeaderBottomPosition);
 					if (mOnHeaderClickListener != null) {
 						mOnHeaderClickListener.onHeaderClick(this, mHeader,
-								mHeaderPosition, mCurrentHeaderId, true);
+								mHeaderPosition, mCurrentHeaderId, true, ev);
 					}
 				}
 				return true;
